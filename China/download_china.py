@@ -101,7 +101,7 @@ def get_collection(
         )
     )
     # Uncomment the following line if you want to apply cloud masking.
-    # collection = collection.map(mask_clouds, args)
+    collection = collection.map(mask_clouds, args)
     return collection
 
 
