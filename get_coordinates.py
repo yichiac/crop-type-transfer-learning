@@ -12,8 +12,6 @@ def get_patch_centroids(tif_path, patch_size, csv_path):
         # Create or overwrite the csv file to store the coordinates
         with open(csv_path, mode='w', newline='') as file:
             writer = csv.writer(file)
-            # Write header
-            # writer.writerow(['index', 'centroid_x', 'centroid_y'])
 
             # Initialize index
             index = 0
@@ -25,23 +23,37 @@ def get_patch_centroids(tif_path, patch_size, csv_path):
                     x_offset = j * patch_size
                     y_offset = i * patch_size
 
-                    # Calculate the centroid of the patch
-                    centroid_x = x_offset + patch_size // 2
-                    centroid_y = y_offset + patch_size // 2
+                    # Read the value at the centroid position
+                    window = Window(x_offset, y_offset, patch_size, patch_size)
+                    data = dataset.read(window=window)
 
-                    # Convert the centroid coordinates to the dataset's coordinate reference system
-                    centroid_coords = dataset.transform * (centroid_x, centroid_y)
+                    # Calculate the relative position of the centroid within the patch
+                    centroid_rel_x = patch_size // 2
+                    centroid_rel_y = patch_size // 2
 
-                    # Write index and centroid coordinates to the csv file
-                    writer.writerow([index] + list(centroid_coords))
+                    # Get the value at the centroid position
+                    centroid_value = data[0, centroid_rel_y, centroid_rel_x]
 
-                    # Increment index
-                    index += 1
+                    # Only proceed if the centroid value is not the no-data value
+                    if centroid_value != no_data_value:
+                        # Calculate the centroid of the patch
+                        centroid_x = x_offset + centroid_rel_x
+                        centroid_y = y_offset + centroid_rel_y
+
+                        # Convert the centroid coordinates to the dataset's coordinate reference system
+                        centroid_coords = dataset.transform * (centroid_x, centroid_y)
+
+                        # Write index and centroid coordinates to the csv file
+                        writer.writerow([index] + list(centroid_coords))
+
+                        # Increment index
+                        index += 1
 
 # Replace 'yourfile.tif' with the path to your .tif file
 tif_path = '/projects/dali/data/china/CDL2019_clip.tif'
-csv_path = 'centroids.csv'
+csv_path = '/projects/dali/data/china/centroids.csv'
 patch_size = 128
+no_data_value = 15
 
 # Get centroids of patches and write to CSV with an index
 get_patch_centroids(tif_path, patch_size, csv_path)
