@@ -51,7 +51,7 @@ def get_patch_centroids(tif_path, patch_size, csv_path):
 
 # Replace 'yourfile.tif' with the path to your .tif file
 tif_path = '/projects/dali/data/china/CDL2019_clip.tif'
-csv_path = '/projects/dali/data/china/centroids.csv'
+csv_path = 'centroids.csv'
 patch_size = 128
 no_data_value = 15
 
