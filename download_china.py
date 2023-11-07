@@ -68,16 +68,16 @@ def date2str(date: date) -> str:
 
 
 def get_period(date: date, days: int = 5) -> tuple[str, str, str, str]:
-    date1 = date - timedelta(days=days / 2)
-    date2 = date + timedelta(days=days / 2)
-    date3 = date1 - timedelta(days=365)
-    date4 = date2 - timedelta(days=365)
+    date1 = date - timedelta(days=days)
+    date2 = date + timedelta(days=days)
+    # date3 = date1 - timedelta(days=5)
+    # date4 = date2 - timedelta(days=5)
     return (
         date2str(date1),
         date2str(date2),
-        date2str(date3),
-        date2str(date4),
-    )  # two-years buffer
+        # date2str(date3),
+        # date2str(date4),
+    )  # five-days buffer
 
 
 """get collection and remove clouds from ee"""
@@ -222,8 +222,8 @@ def get_random_patches_match(
     # (lon,lat) of idx patch
     coords = match_coords[idx]
 
-    # random +- 30 days of random days within 1 year from the reference dates
-    periods = [get_period(date, days=60) for date in dates]
+    # random +- 5 days of random days within 1 year from the reference dates
+    periods = [get_period(date, days=5) for date in dates]
 
     try:
         filtered_collections = [
