@@ -26,4 +26,4 @@ python3 download_china.py \
     --num-workers 8 \
     --log-freq 100 \
     --match-file fist_100_centroids.csv \
-    --indices-range 0 250000
+    --indices-range 0 150
