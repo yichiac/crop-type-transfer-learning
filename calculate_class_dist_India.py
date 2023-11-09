@@ -5,8 +5,8 @@ import numpy as np
 # Define the directory where to start searching for raster files
 root_directory = '/projects/dali/data/agrifieldnet/ref_agrifieldnet_competition_v1_labels_train'
 
-# This dictionary will hold the class distribution for each raster file found
-class_distributions = {}
+# This dictionary will hold the aggregated class distribution
+aggregated_class_distribution = {}
 
 # Walk through all subdirectories in the root directory
 for subdir, dirs, files in os.walk(root_directory):
@@ -19,19 +19,20 @@ for subdir, dirs, files in os.walk(root_directory):
             # Read the raster file
             with rasterio.open(file_path) as src:
                 # Read the data as a one-dimensional array
-                data = src.read(1)
+                data = src.read(1).flatten()  # Flatten the data
 
-                # Flatten the array to one dimension and compute the histogram
+                # Compute the histogram
                 unique, counts = np.unique(data, return_counts=True)
 
-                # Store the class distribution in the dictionary
-                class_distributions[file_path] = dict(zip(unique, counts))
+                # Aggregate the counts for each class
+                for class_value, count in zip(unique, counts):
+                    if class_value in aggregated_class_distribution:
+                        aggregated_class_distribution[class_value] += count
+                    else:
+                        aggregated_class_distribution[class_value] = count
 
-# Now class_distributions contains the class counts for each raster_labels.tif file
-# You can print the distributions or write them to a file
-
-# For example, print the distributions:
-for path, distribution in class_distributions.items():
-    print(f"Class distribution for {path}:")
-    for class_value, count in distribution.items():
-        print(f"Class {class_value}: {count}")
+# Now aggregated_class_distribution contains the total class counts across all raster_labels.tif files
+# Print the aggregated distributions:
+print(f"Aggregated Class Distribution:")
+for class_value, count in aggregated_class_distribution.items():
+    print(f"Class {class_value}: {count}")
