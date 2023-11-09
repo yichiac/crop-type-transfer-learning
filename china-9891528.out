@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/home/yichia3/torchgeo-crop-type/download_china.py", line 425, in <module>
+    collection = get_collection(args.collection, args.meta_cloud_name, args.cloud_pct)
+  File "/home/yichia3/torchgeo-crop-type/download_china.py", line 104, in get_collection
+    collection = collection.map(mask_clouds, args)
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/view/lib/python3.10/site-packages/ee/collection.py", line 204, in map
+    return self._cast(apifunction.ApiFunction.call_(
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/view/lib/python3.10/site-packages/ee/apifunction.py", line 81, in call_
+    return cls.lookup(name).call(*args, **kwargs)
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/view/lib/python3.10/site-packages/ee/function.py", line 67, in call
+    return self.apply(self.nameArgs(args, kwargs))
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/view/lib/python3.10/site-packages/ee/function.py", line 80, in apply
+    result = computedobject.ComputedObject(self, self.promoteArgs(named_args))
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/view/lib/python3.10/site-packages/ee/function.py", line 107, in promoteArgs
+    promoted_args[name] = Function._promoter(args[name], spec['type'])
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/view/lib/python3.10/site-packages/ee/__init__.py", line 257, in _Promote
+    return CustomFunction.create(arg, 'Object', ['Object'] * args_count)
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/view/lib/python3.10/site-packages/ee/customfunction.py", line 124, in create
+    return CustomFunction(signature, func)
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/view/lib/python3.10/site-packages/ee/customfunction.py", line 42, in __init__
+    if body(*variables) is None:
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/view/lib/python3.10/site-packages/ee/collection.py", line 203, in <lambda>
+    with_cast = lambda e: algorithm(element_type(e))
+TypeError: mask_clouds() missing 1 required positional argument: 'image'
