@@ -13,7 +13,7 @@ from rtree import index
 from sample_ssl4eo import create_bbox, km2deg
 from shapely.geometry import MultiPolygon, Point, shape
 from shapely.ops import unary_union
-from torchvision.datasets.utils import download_and_extract_archive
+# from torchvision.datasets.utils import download_and_extract_archive
 from tqdm import tqdm
 
 
@@ -26,19 +26,20 @@ def retrieve_rois_polygons(download_root: str) -> MultiPolygon:
     Returns:
         MultiPolygon of CONUS
     """
-    state_url = "https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_5m.zip"
+    # state_url = "https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_5m.zip"
     state_filename = "cb_2018_us_state_5m.shp"
-    download_and_extract_archive(state_url, download_root)
+    # download_and_extract_archive(state_url, download_root)
 
-    excluded_states = [
-        "United States Virgin Islands",
-        "Commonwealth of the Northern Mariana Islands",
-        "Puerto Rico",
-        "Alaska",
-        "Hawaii",
-        "American Samoa",
-        "Guam",
-    ]
+    # excluded_states = [
+    #     "United States Virgin Islands",
+    #     "Commonwealth of the Northern Mariana Islands",
+    #     "Puerto Rico",
+    #     "Alaska",
+    #     "Hawaii",
+    #     "American Samoa",
+    #     "Guam",
+    # ]
+
     conus = []
     with fiona.open(os.path.join(download_root, state_filename), "r") as shapefile:
         for feature in shapefile:
