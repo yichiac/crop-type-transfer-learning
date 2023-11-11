@@ -64,7 +64,7 @@ if __name__ == "__main__":
         "--indices-range",
         type=int,
         nargs=2,
-        default=[0, 500],
+        default=[0, 10],
         help="indices to download",
     )
     parser.add_argument(
