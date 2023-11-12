@@ -16,6 +16,11 @@ from shapely.ops import unary_union
 # from torchvision.datasets.utils import download_and_extract_archive
 from tqdm import tqdm
 
+# The area of Northeast China is 305,726 mi²
+# The are of CONUS is 3,119,884 mi²
+# The area of Northeast China is 9.8% of CONUS
+# Thus, roughly 10% of the CONUS sample points should be sufficient for Northeast China
+# 25,000 * 0.098 = 2,450
 
 def retrieve_rois_polygons(download_root: str) -> MultiPolygon:
     """Retrieve Northeast China MultiPolygon.
@@ -52,7 +57,7 @@ if __name__ == "__main__":
         "--indices-range",
         type=int,
         nargs=2,
-        default=[0, 500],
+        default=[0, 2500],
         help="indices to download",
     )
     parser.add_argument(

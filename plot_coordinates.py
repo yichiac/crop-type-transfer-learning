@@ -5,10 +5,10 @@ import cartopy.crs as ccrs
 
 # Load the CSV file
 df = pd.read_csv('data/sampled_locations.csv', header=None, names=['idx', 'x', 'y'])
-# gdf = gpd.read_file('data/northeast/ChinaAgriREZone.shp')
+gdf = gpd.read_file('data/northeast/ChinaAgriREZone.shp')
 
-# if gdf.crs.to_string() != 'EPSG:4326':
-#     gdf = gdf.to_crs(epsg=4326)
+if gdf.crs.to_string() != 'EPSG:4326':
+    gdf = gdf.to_crs(epsg=4326)
 
 
 # Create a figure with an appropriate size
@@ -23,12 +23,12 @@ ax.coastlines()
 
 # Plot the points
 plt.scatter(df['x'], df['y'], color='blue', marker='o', transform=ccrs.Geodetic())
-# gdf.plot(ax=ax, facecolor='none', edgecolor='red', linewidth=2)
+gdf.plot(ax=ax, facecolor='none', edgecolor='red', linewidth=2)
 
 # Add gridlines and labels for readability
 ax.gridlines(draw_labels=True)
 
-plt.savefig('conus_sample_points.png')
+plt.savefig('sample_points.png')
 
 # Show the plot
 plt.show()
