@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #SBATCH --time=12:00:00
-#SBATCH --mem=32G
+#SBATCH --mem=16G
 #SBATCH --job-name=china_download
 #SBATCH --partition=dali
 #SBATCH --nodes=1

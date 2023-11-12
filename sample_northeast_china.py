@@ -21,6 +21,7 @@ from tqdm import tqdm
 # The area of Northeast China is 9.8% of CONUS
 # Thus, roughly 10% of the CONUS sample points should be sufficient for Northeast China
 # 25,000 * 0.098 = 2,450
+# but the Sentinel-2 resolution is higher, at least 25k points should be good.
 
 def retrieve_rois_polygons(download_root: str) -> MultiPolygon:
     """Retrieve Northeast China MultiPolygon.
@@ -57,7 +58,7 @@ if __name__ == "__main__":
         "--indices-range",
         type=int,
         nargs=2,
-        default=[0, 2500],
+        default=[0, 1000000],
         help="indices to download",
     )
     parser.add_argument(
