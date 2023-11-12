@@ -2,7 +2,7 @@
 
 #SBATCH --time=12:00:00
 #SBATCH --mem=32G
-#SBATCH --job-name=china
+#SBATCH --job-name=china_download
 #SBATCH --partition=dali
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=32
