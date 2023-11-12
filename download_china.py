@@ -70,13 +70,13 @@ def date2str(date: date) -> str:
 def get_period(date: date, days: int = 5) -> tuple[str, str, str, str]:
     date1 = date - timedelta(days=days)
     date2 = date + timedelta(days=days)
-    # date3 = date1 - timedelta(days=5)
-    # date4 = date2 - timedelta(days=5)
+    date3 = date1 - timedelta(days=365)
+    date4 = date2 - timedelta(days=365)
     return (
         date2str(date1),
         date2str(date2),
-        # date2str(date3),
-        # date2str(date4),
+        date2str(date3),
+        date2str(date4),
     )  # five-days buffer
 
 
