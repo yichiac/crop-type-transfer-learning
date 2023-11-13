@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#SBATCH --time=12:00:00
+#SBATCH --time=24:00:00
 #SBATCH --mem=32G
 #SBATCH --job-name=china_sample
 #SBATCH --partition=dali

@@ -41,7 +41,6 @@ def retrieve_rois_polygons(download_root: str) -> MultiPolygon:
     with fiona.open(os.path.join(download_root, state_filename), "r") as shapefile:
         for feature in shapefile:
             northeast.append(shape(feature["geometry"]))
-
     northeast = unary_union(northeast)
     return northeast
 
@@ -58,7 +57,7 @@ if __name__ == "__main__":
         "--indices-range",
         type=int,
         nargs=2,
-        default=[0, 1000000],
+        default=[0, 75000],
         help="indices to download",
     )
     parser.add_argument(
