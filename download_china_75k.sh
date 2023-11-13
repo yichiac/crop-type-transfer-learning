@@ -26,4 +26,4 @@ python3 download_china.py \
     --num-workers 8 \
     --log-freq 100 \
     --match-file ./data/sampled_locations_75k.csv \
-    --indices-range 0 2500
+    --indices-range 0 75000
