@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-#SBATCH --time=24:00:00
-#SBATCH --mem=32G
-#SBATCH --job-name=china_sample
+#SBATCH --time=48:00:00
+#SBATCH --mem=16G
+#SBATCH --job-name=china_sample_100k
 #SBATCH --partition=dali
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=32
+#SBATCH --ntasks-per-node=16
 #SBATCH --mail-type=END
 #SBATCH --mail-user=yichia3@illinois.edu
 #SBATCH --mail-type=FAIL

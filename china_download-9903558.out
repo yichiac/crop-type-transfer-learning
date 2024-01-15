@@ -1,0 +1,60 @@
+*** Earth Engine *** Share your feedback by taking our Annual Developer Satisfaction Survey: https://google.qualtrics.com/jfe/form/SV_doiqkQG3NJ1t8IS?source=API
+Downloaded 100 images in 613.274s.
+Downloaded 200 images in 1225.135s.
+Downloaded 300 images in 1818.419s.
+Downloaded 400 images in 2436.485s.
+Downloaded 500 images in 2995.591s.
+Downloaded 600 images in 3574.261s.
+Downloaded 700 images in 4213.417s.
+Downloaded 800 images in 4925.485s.
+Downloaded 900 images in 5645.645s.
+Downloaded 1000 images in 6258.568s.
+Downloaded 1100 images in 6943.525s.
+Downloaded 1200 images in 7614.826s.
+Downloaded 1300 images in 8329.477s.
+Downloaded 1400 images in 9084.967s.
+Downloaded 1500 images in 9770.101s.
+Downloaded 1600 images in 10393.048s.
+Downloaded 1700 images in 10989.219s.
+Downloaded 1800 images in 11597.645s.
+Downloaded 1900 images in 12188.289s.
+Downloaded 2000 images in 12785.006s.
+Downloaded 2100 images in 13404.226s.
+Downloaded 2200 images in 13986.009s.
+Downloaded 2300 images in 14723.449s.
+Downloaded 2400 images in 15332.671s.
+Downloaded 2500 images in 15978.644s.
+Downloaded 2600 images in 16594.736s.
+Downloaded 2700 images in 17193.882s.
+Downloaded 2800 images in 17776.143s.
+Downloaded 2900 images in 18374.427s.
+Downloaded 3000 images in 18985.306s.
+Downloaded 3100 images in 19592.250s.
+Downloaded 3200 images in 20173.680s.
+Downloaded 3300 images in 20751.503s.
+Downloaded 3400 images in 21337.311s.
+Downloaded 3500 images in 21897.112s.
+Downloaded 3600 images in 22488.618s.
+Downloaded 3700 images in 23051.415s.
+Downloaded 3800 images in 23604.277s.
+Downloaded 3900 images in 24173.284s.
+Downloaded 4000 images in 24749.926s.
+Downloaded 4100 images in 25352.491s.
+OSError: [Errno 122] Disk quota exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yichia3/torchgeo-crop-type/download_china.py", line 543, in <module>
+    p.map(worker, indices)
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/._view/266gtgbrgzssx4ahqyfak6ei3blc3nyw/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/._view/266gtgbrgzssx4ahqyfak6ei3blc3nyw/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/._view/266gtgbrgzssx4ahqyfak6ei3blc3nyw/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/projects/dali/spack/var/spack/environments/dali/.spack-env/._view/266gtgbrgzssx4ahqyfak6ei3blc3nyw/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/home/yichia3/torchgeo-crop-type/download_china.py", line 516, in worker
+    with open(ext_path, "a") as f:
+OSError: [Errno 122] Disk quota exceeded
