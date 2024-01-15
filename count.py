@@ -1,6 +1,4 @@
 import os
-import time
-
 import geopandas as gpd
 
 def count_polygons_in_shapefile(shapefile_path):
@@ -8,15 +6,27 @@ def count_polygons_in_shapefile(shapefile_path):
     gdf = gpd.read_file(shapefile_path)
 
     # Count the number of polygons
-    polygon_count = len(gdf)
+    return len(gdf)
 
-    return polygon_count
+def find_shapefiles_in_directory(directory):
+    shapefiles = []
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".shp"):
+                shapefiles.append(os.path.join(root, file))
+    return shapefiles
 
-# Replace 'your_shapefile_path.shp' with the path to your shapefile
-print("Counting polygons in the shapefile...")
-start_time = time.time()
-shapefile_path = os.path.join('NL', 'NL_2020_EC21.shp')
-number_of_polygons = count_polygons_in_shapefile(shapefile_path)
+def main():
+    directory = '/projects/dali/data/eurocrops'
+    shapefiles = find_shapefiles_in_directory(directory)
 
-print(f"Number of polygons in the shapefile: {number_of_polygons}")
-print('total time: ', time.time() - start_time, 'seconds')
+    total_polygons = 0
+    for shapefile in shapefiles:
+        polygon_count = count_polygons_in_shapefile(shapefile)
+        print(f"{shapefile}: {polygon_count} polygons")
+        total_polygons += polygon_count
+
+    print(f"Total number of polygons in all shapefiles: {total_polygons}")
+
+if __name__ == "__main__":
+    main()
