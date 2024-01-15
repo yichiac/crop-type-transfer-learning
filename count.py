@@ -23,7 +23,7 @@ def main():
     total_polygons = 0
     for shapefile in shapefiles:
         polygon_count = count_polygons_in_shapefile(shapefile)
-        print(f"{shapefile}: {polygon_count} polygons")
+        print(f"{shapefile}: {polygon_count} fields")
         total_polygons += polygon_count
 
     print(f"Total number of polygons in all shapefiles: {total_polygons}")
