@@ -15,7 +15,6 @@ for subdir, dirs, files in os.walk(root_directory):
         if not file.endswith('field_ids.tif'):
             # Construct the full file path
             file_path = os.path.join(subdir, file)
-            print(file_path)
 
             # Read the raster file
             with rasterio.open(file_path) as src:
