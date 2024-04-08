@@ -4,27 +4,25 @@ import torch
 
 from torchgeo.datamodules import Sentinel2CDLDataModule
 from torchgeo.datasets import unbind_samples
-from torchgeo.models import ResNet18_Weights
-from torchgeo.trainers import SemanticSegmentationTask
-
 import time
 
 device = torch.device("cpu")
 
-weights = ResNet18_Weights.SENTINEL2_ALL_MOCO
+path = "/Users/yc/Downloads/log/checkpoints/epoch=9-step=96370.ckpt"
+state_dict = torch.load(path, map_location=device)["state_dict"]
+state_dict = {key.replace("model.", ""): value for key, value in state_dict.items()}
 
-model = smp.Unet(encoder_name="resnet18", in_channels=13, classes=134)
+
+model = smp.Unet(encoder_name="resnet18", in_channels=13, classes=9)
 model.to(device)
-model.load_state_dict(weights.get_state_dict(progress=True), strict=False)
+model.load_state_dict(state_dict, strict=True)
 
-# Initialize data loaders
 datamodule = Sentinel2CDLDataModule(
     crs="epsg:3857",
     batch_size=64,
-    patch_size=224,
-    cdl_paths="./cdl",
-    sentinel2_paths="./cdl_2023",
-
+    patch_size=256,
+    cdl_paths="/Users/yc/Datasets/cdl_everything",
+    sentinel2_paths="/Users/yc/Datasets/pub-956f3eb0f5974f37b9228e0a62f449bf.r2.dev/crop_type_mapping_sentinel2/cdl_2023_chipped",
 )
 
 datamodule.setup("test")
@@ -52,9 +50,8 @@ for batch in datamodule.test_dataloader():
             continue
 
         # Skip boring images
-        if len(sample["mask"].unique()) < 3:
-            print('boring')
-            continue
+        # if len(sample["mask"].unique()) < 3:
+        #     continue
 
         # Plot
         datamodule.plot(sample)
