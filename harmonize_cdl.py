@@ -1,4 +1,6 @@
 import rasterio
+# from rasterio.enums import Compression
+from rasterio.windows import Window
 import numpy as np
 
 def harmonize_classes(input_tif, output_tif):
@@ -11,30 +13,28 @@ def harmonize_classes(input_tif, output_tif):
         # Note: '5: Others' will be handled by defaulting to 5 if not in any of the above
     }
 
-    # Open the input TIFF file
     with rasterio.open(input_tif) as src:
-        # Read the data
-        image_data = src.read(1)
-
-        # Create an output array filled with '5' (Others)
-        output_data = np.full(image_data.shape, 5, dtype=np.uint8)
-
-        # Loop through the harmonized classes and assign them
-        for harmonized, originals in harmonized_classes.items():
-            for original in originals:
-                output_data[image_data == original] = harmonized
-
-        # Copy the metadata and update the data type
         out_meta = src.meta.copy()
-        out_meta.update(dtype=rasterio.uint8)
+        out_meta.update({
+            'dtype': rasterio.uint8,
+            'compress': 'lzw',
+        })
 
-        # Write the harmonized data to a new TIFF file
         with rasterio.open(output_tif, 'w', **out_meta) as dst:
-            dst.write(output_data, 1)
 
-# Use the function
-input_tif = '/Users/yc/Datasets/cdl_clipped/cdl_tap_COG/2023_30m_cdls.tif'
-output_tif = '/Users/yc/Datasets/cdl_clipped/cdl_harmonized/2023_30m_cdls.tif'
+            for ji, window in src.block_windows(1):
+                data = src.read(1, window=window)
+                output_data = np.full(data.shape, 5, dtype=np.uint8)
+
+                for harmonized, originals in harmonized_classes.items():
+                    for original in originals:
+                        output_data[data == original] = harmonized
+
+                dst.write(output_data, window=window, indexes=1)
+
+
+input_tif = '/Users/yc/Datasets/cdl_everything/2023_30m_cdls.tif'
+output_tif = '/Users/yc/Datasets/cdl_harmonized_window/2023_30m_cdls.tif'
 harmonize_classes(input_tif, output_tif)
 
 print(f"Harmonized TIFF file saved to: {output_tif}")
