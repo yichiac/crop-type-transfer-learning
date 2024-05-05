@@ -2,6 +2,7 @@ import rasterio
 # from rasterio.windows import Window
 from rasterio.crs import CRS
 import numpy as np
+import os
 
 def harmonize_classes(input_tif, output_tif):
     harmonized_classes = {
@@ -18,7 +19,6 @@ def harmonize_classes(input_tif, output_tif):
         out_meta.update({
             'dtype': rasterio.uint8,
             'compress': 'lzw',
-            # 'crs': CRS.from_epsg(3857)
         })
 
         with rasterio.open(output_tif, 'w', **out_meta) as dst:
@@ -32,9 +32,12 @@ def harmonize_classes(input_tif, output_tif):
             dst.write(output_data, indexes=1)
 
 # input_paths = []
-
-input_tif = '/Users/yc/Datasets/agrifieldnet/train_labels/ref_agrifieldnet_competition_v1_labels_train_ff961.tif'
-output_tif = '/Users/yc/Datasets/agrifieldnet_harmonized/train_labels/ref_agrifieldnet_competition_v1_labels_train_ff961.tif'
-harmonize_classes(input_tif, output_tif)
+filenames = os.listdir('/data/yichiac/agrifieldnet/train_labels/')
+filenames = [f for f in filenames if f.endswith('.tif') and not f.endswith('_field_ids.tif')]
+for filename in filenames:
+    input_tif = f'/data/yichiac/agrifieldnet/train_labels/{filename}'
+    output_tif = f'/data/yichiac/agrifieldnet_harmonized/train_labels/{filename}'
+    harmonize_classes(input_tif, output_tif)
+    print(f"Harmonized TIFF file saved to: {output_tif}")
 
 print(f"Harmonized TIFF file saved to: {output_tif}")
