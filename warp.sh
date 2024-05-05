@@ -5,12 +5,12 @@ gdal_translate -of COG -co BLOCKXSIZE=256 /Users/yc/Datasets/agrifieldnet_harmon
 for file in /data/yichiac/agrifieldnet_harmonized/train_labels/*.tif; do
   gdalwarp -t_srs EPSG:3857 -overwrite -tr 10.0 10.0 -r near -of GTiff \
   -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 -dstnodata 0 -tap \
-  "$file" "/Users/yc/Datasets/agrifieldnet_harmonized_tap/train_labels/$(basename $file)"
+  "$file" "/data/yichiac/agrifieldnet_harmonized_tap/train_labels/$(basename $file)"
 done
 
 for file in /data/yichiac/agrifieldnet_harmonized_tap/train_labels/*.tif; do
   gdal_translate -of COG -co BLOCKXSIZE=256 \
-  "$file" "/Users/yc/Datasets/agrifieldnet_harmonized_optimized/train_labels/$(basename "$file")"
+  "$file" "/data/yichiac/agrifieldnet_harmonized_optimized/train_labels/$(basename "$file")"
 done
 
 
