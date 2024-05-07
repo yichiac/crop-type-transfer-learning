@@ -1,6 +1,4 @@
 import rasterio
-# from rasterio.windows import Window
-from rasterio.crs import CRS
 import numpy as np
 import os
 
