@@ -1,3 +1,10 @@
+# SAS
+gdalwarp -t_srs EPSG:3857 -overwrite -tr 10.0 10.0 -r near -of GTiff -co BIGTIFF=YES -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 -dstnodata 0 -tap /data/yichiac/SouthAmericaSoybean_harmonized/SouthAmerica_Soybean_2021.tif /data/yichiac/SouthAmericaSoybean_harmonized_tap/SouthAmerica_Soybean_2021.tif
+
+gdal_translate -of COG -co BIGTIFF=YES -co BLOCKXSIZE=256 /data/yichiac/SouthAmericaSoybean_harmonized_tap/SouthAmerica_Soybean_2021.tif /data/yichiac/SouthAmericaSoybean_harmonized_tap_cog/SouthAmerica_Soybean_2021.tif
+
+gdalwarp -t_srs EPSG:3857 -overwrite -tr 10.0 10.0 -r near -of GTiff -co BIGTIFF=YES -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 -dstnodata 0 -tap /data/yichiac/SouthAmericaSoybean_harmonized/SouthAmerica_Soybean_2021.tif /data/yichiac/SouthAmericaSoybean_harmonized_tap/SouthAmerica_Soybean_2021.tif && gdal_translate -of COG -co BIGTIFF=YES -co BLOCKXSIZE=256 /data/yichiac/SouthAmericaSoybean_harmonized_tap/SouthAmerica_Soybean_2021.tif /data/yichiac/SouthAmericaSoybean_harmonized_tap_cog/SouthAmerica_Soybean_2021.tif > warp.log &
+
 # Agrifieldnet
 gdalwarp -t_srs EPSG:3857 -overwrite -tr 10.0 10.0 -r near -of GTiff -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 -dstnodata 0 -tap /Users/yc/Datasets/agrifieldnet_harmonized/train_labels/ref_agrifieldnet_competition_v1_labels_train_ff961.tif /Users/yc/Datasets/agrifieldnet_harmonized_tap/train_labels/ref_agrifieldnet_competition_v1_labels_train_ff961.tif
 gdal_translate -of COG -co BLOCKXSIZE=256 /Users/yc/Datasets/agrifieldnet_harmonized_tap/train_labels/*.tif /Users/yc/Datasets/agrifieldnet_harmonized_optimized/train_labels/*.tif
