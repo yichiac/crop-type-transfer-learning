@@ -1,3 +1,15 @@
+# SACT South Africa
+for file in /data/yichiac/sact_harmonized/train/labels/*.tif; do
+  gdalwarp -t_srs EPSG:3857 -overwrite -tr 10.0 10.0 -r near -of GTiff \
+  -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 -dstnodata 0 -tap \
+  "$file" "/data/yichiac/sact_harmonized_tap/train/labels/$(basename $file)"
+done
+
+for file in /data/yichiac/sact_harmonized_tap/train/labels/*.tif; do
+  gdal_translate -of COG -co BLOCKXSIZE=256 \
+  "$file" "/data/yichiac/sact_harmonized_optimized/train/labels/$(basename "$file")"
+done
+
 # SAS
 gdalwarp -t_srs EPSG:3857 -overwrite -tr 10.0 10.0 -r near -of GTiff -co BIGTIFF=YES -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 -dstnodata 0 -tap /data/yichiac/SouthAmericaSoybean_harmonized/SouthAmerica_Soybean_2021.tif /data/yichiac/SouthAmericaSoybean_harmonized_tap/SouthAmerica_Soybean_2021.tif
 

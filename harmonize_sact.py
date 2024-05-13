@@ -30,11 +30,11 @@ def harmonize_classes(input_tif, output_tif):
             dst.write(output_data, indexes=1)
 
 # input_paths = []
-filenames = os.listdir('/data/yichiac/satc/train/labels/')
+filenames = os.listdir('/data/yichiac/sact/train/labels/')
 filenames = [f for f in filenames if f.endswith('.tif') and not f.endswith('_field_ids.tif')]
 for filename in filenames:
-    input_tif = f'/data/yichiac/satc/train/labels/{filename}'
-    output_tif = f'/data/yichiac/satc_harmonized/train/labels/{filename}'
+    input_tif = f'/data/yichiac/sact/train/labels/{filename}'
+    output_tif = f'/data/yichiac/sact_harmonized/train/labels/{filename}'
     harmonize_classes(input_tif, output_tif)
     print(f"Harmonized TIFF file saved to: {output_tif}")
 
