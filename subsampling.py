@@ -48,7 +48,7 @@ def export_to_csv(data, output_file):
 # Example usage
 path_to_search = '/data/yichiac/cdl_2023'
 source_file = 'T00AAA_20230701T000000_combined.tif'
-destination_dir = '/data/yichiac/sentinel2_cdl_2023_2800'
+destination_dir = '/data/yichiac/sentinel2_cdl_2023_subsampled'
 csv_output_file = '/data/yichiac/cdl_sample_directories.csv'
 
 # Sample directories
