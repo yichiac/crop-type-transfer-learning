@@ -46,10 +46,10 @@ def export_to_csv(data, output_file):
         return str(e)
 
 # Example usage
-path_to_search = '/data/yichiac/cdl_2023'
-source_file = 'T00AAA_20230701T000000_combined.tif'
-destination_dir = '/data/yichiac/sentinel2_cdl_2023_subsampled'
-csv_output_file = '/data/yichiac/cdl_sample_directories.csv'
+path_to_search = '/data/yichiac/nccm_2019'
+source_file = 'T00AAA_20190701T000000_combined.tif'
+destination_dir = '/data/yichiac/sentinel2_nccm_2019_subsampled'
+csv_output_file = '~/nccm_sample_directories.csv'
 
 # Sample directories
 sampled_dirs = sample_directories(path_to_search)
