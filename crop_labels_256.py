@@ -27,7 +27,7 @@ def crop_images(directory, size=(256, 256)):
                 })
 
                 # Save the cropped image
-                cropped_filepath = os.path.join(directory, f"cropped_{filename}")
+                cropped_filepath = os.path.join(directory, f"{filename}")
                 with rasterio.open(cropped_filepath, "w", **meta) as dest:
                     dest.write(cropped_img)
 
