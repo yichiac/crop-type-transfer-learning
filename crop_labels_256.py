@@ -34,7 +34,7 @@ def crop_images(directory, size=(256, 256)):
                 print(f"Cropped {filename} to {size[0]}x{size[1]}")
 
 # Set the directory containing the .tif images
-image_directory = '/data/yichiac/agrifieldnet_harmonized/train_labels'
+image_directory = '/data/yichiac/sact_harmonized/train/labels'
 
 # Crop all .tif images in the directory
 crop_images(image_directory)
