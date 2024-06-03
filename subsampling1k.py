@@ -26,9 +26,9 @@ def copy_random_files(src_folder, dest_folder, num_files, log_file):
 
 # Parameters
 num_files = 1000
-src_folder = '/data/yichiac/sentinel2_subsample/sentinel2_eurocrops_subsampled'
-dest_folder = '/data/yichiac/sentinel2_subsample_'+str(num_files)+'/sentinel2_eurocrops_subsampled'
-log_file = '/data/yichiac/sample_files/eurocrops_subsampled_'+str(num_files)+'.txt'
+src_folder = '/data/yichiac/sentinel2_subsample/sentinel2_sas_2021_subsampled'
+dest_folder = '/data/yichiac/sentinel2_subsample_'+str(num_files)+'/sentinel2_sas_2021_subsampled'
+log_file = '/data/yichiac/sample_files/sas_subsampled_'+str(num_files)+'.txt'
 
 # Call the function
 copy_random_files(src_folder, dest_folder, num_files, log_file)
