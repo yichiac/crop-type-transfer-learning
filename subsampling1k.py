@@ -25,10 +25,10 @@ def copy_random_files(src_folder, dest_folder, num_files, log_file):
             f.write(file_name + '\n')
 
 # Parameters
-num_files = 10
-src_folder = '/data/yichiac/sentinel2_subsample/sentinel2_cdl_2023_subsampled'
-dest_folder = '/data/yichiac/sentinel2_subsample_'+str(num_files)+'/sentinel2_cdl_2023_subsampled'
-log_file = '/data/yichiac/sample_files/cdl_subsampled_'+str(num_files)+'.txt'
+num_files = 1000
+src_folder = '/data/yichiac/sentinel2_subsample/sentinel2_nccm_2019_subsampled'
+dest_folder = '/data/yichiac/sentinel2_subsample_'+str(num_files)+'/sentinel2_nccm_2019_subsampled'
+log_file = '/data/yichiac/sample_files/nccm_subsampled_'+str(num_files)+'.txt'
 
 # Call the function
 copy_random_files(src_folder, dest_folder, num_files, log_file)
