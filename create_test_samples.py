@@ -2,7 +2,7 @@ import os
 # import random
 import shutil
 
-def copy_random_files(train_folder, all_folder, dest_folder, log_file):
+def copy_random_files(src_folder, all_folder, dest_folder, log_file):
     # Create the destination folder if it doesn't exist
     if not os.path.exists(dest_folder):
         os.makedirs(dest_folder)
@@ -31,4 +31,4 @@ dest_folder = '/data/yichiac/sentinel2_subsample_'+str(num_files)
 log_file = '/data/yichiac/sample_files_test/cdl_subsampled_'+str(num_files)+'.txt'
 
 # Call the function
-copy_random_files(src_folder, dest_folder, num_files, log_file)
+copy_random_files(src_folder, all_folder, dest_folder, log_file)
