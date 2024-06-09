@@ -3,7 +3,7 @@ import rasterio
 import numpy as np
 
 # Define the directory where to start searching for raster files
-img_directory = '/data/yichiac/sentinel2_subsample_1000/sentinel2_sact_2017_subsampled'
+img_directory = '/data/yichiac/sentinel2_subsample_1000/sentinel2_eurocrops_subsampled'
 root_directory = '/data/yichiac/eurocrops_cropped_subsampled'
 aggregated_class_distribution = {}
 
