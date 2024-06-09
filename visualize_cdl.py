@@ -8,7 +8,8 @@ import time
 
 device = torch.device("cpu")
 
-path = "/Users/yc/Downloads/log/checkpoints/epoch=9-step=96370.ckpt"
+# path = "/Users/yc/Downloads/log/checkpoints/epoch=9-step=96370.ckpt"
+path = "/Users/yc/Downloads/epoch=99-step=700.ckpt"
 state_dict = torch.load(path, map_location=device)["state_dict"]
 state_dict = {key.replace("model.", ""): value for key, value in state_dict.items()}
 
@@ -19,7 +20,7 @@ model.load_state_dict(state_dict, strict=True)
 
 datamodule = Sentinel2CDLDataModule(
     crs="epsg:3857",
-    batch_size=64,
+    batch_size=128,
     patch_size=256,
     cdl_paths="/Users/yc/Datasets/cdl_everything",
     sentinel2_paths="/Users/yc/Datasets/pub-956f3eb0f5974f37b9228e0a62f449bf.r2.dev/crop_type_mapping_sentinel2/cdl_2023_chipped",
@@ -44,18 +45,21 @@ for batch in datamodule.test_dataloader():
 
     print("Finish prediction in {} seconds".format(time.time() - start_time))
 
+    count = 0
     for sample in unbind_samples(batch):
         # Skip nodata pixels
         if 0 in sample["mask"]:
             continue
 
         # Skip boring images
-        # if len(sample["mask"].unique()) < 3:
-        #     continue
+        if len(sample["mask"].unique()) < 3:
+            continue
 
         # Plot
         datamodule.plot(sample)
-        plt.show()
+        plt.savefig(f"output/{count}.png")
+        # plt.show()
+        count += 1
 
 
 
