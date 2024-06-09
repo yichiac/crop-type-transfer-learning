@@ -8,10 +8,12 @@ root_directory = '/data/yichiac/eurocrops_cropped_subsampled'
 aggregated_class_distribution = {}
 
 # Walk through all subdirectories in the root directory
+c = 0
 for subdir, dirs, files in os.walk(img_directory):
     for file in files:
         if file.endswith('.tif'):
             file_path = os.path.join(root_directory, file)
+            c += 1
 
             # Read the raster file
             with rasterio.open(file_path) as src:
@@ -30,3 +32,5 @@ for subdir, dirs, files in os.walk(img_directory):
 print(f"Aggregated Class Distribution:")
 for class_value, count in aggregated_class_distribution.items():
     print(f"Class {class_value}: {count}")
+
+print('Number of files processed:', c)
