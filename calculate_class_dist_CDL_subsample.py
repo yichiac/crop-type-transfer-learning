@@ -30,14 +30,16 @@ for subdir, dirs, files in os.walk(img_directory):
                 print('window w: ', window.width)
                 print('extracted mask size: ', mask_data.shape)
 
-#                 unique, counts = np.unique(mask_data, return_counts=True)
+                unique, counts = np.unique(mask_data, return_counts=True)
 
-#                 for class_value, count in zip(unique, counts):
-#                     if class_value in aggregated_class_distribution:
-#                         aggregated_class_distribution[class_value] += count
-#                     else:
-#                         aggregated_class_distribution[class_value] = count
+                for class_value, count in zip(unique, counts):
+                    if class_value in aggregated_class_distribution:
+                        aggregated_class_distribution[class_value] += count
+                    else:
+                        aggregated_class_distribution[class_value] = count
 
-# print(f"Aggregated Class Distribution:")
-# for class_value, count in aggregated_class_distribution.items():
-#     print(f"Class {class_value}: {count}")
+print(f"Aggregated Class Distribution:")
+for class_value, count in aggregated_class_distribution.items():
+    print(f"Class {class_value}: {count}")
+
+print('Number of files processed:', c)
