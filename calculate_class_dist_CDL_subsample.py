@@ -24,7 +24,8 @@ for subdir, dirs, files in os.walk(img_directory):
                     continue
 
                 window = from_bounds(img_minx, img_miny, img_maxx, img_maxy, mask_src.transform)
-                mask_data = mask_src.read(1, window=window).flatten()
+                with rasterio.open(mask_file) as mask_src:
+                    mask_data = mask_src.read(1, window=window).flatten()
                 print('window h: ', window.height)
                 print('window w: ', window.width)
                 print('extracted mask size: ', mask_data.shape)
