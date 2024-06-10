@@ -6,6 +6,7 @@ import numpy as np
 # Define the directory where to start searching for raster files
 mask_file = '/data/yichiac/cdl_harmonized_block/2023_30m_cdls.tif'
 img_directory = '/data/yichiac/sentinel2_subsample_1000/sentinel2_cdl_2023_subsampled'
+output_tiff_path = '/data/yichiac/cdl_harmonized_block_prechipped_1000'
 aggregated_class_distribution = {}
 
 with rasterio.open(mask_file) as mask_src:
@@ -26,6 +27,17 @@ for subdir, dirs, files in os.walk(img_directory):
                 window = from_bounds(img_minx, img_miny, img_maxx, img_maxy, mask_src.transform)
                 with rasterio.open(mask_file) as mask_src:
                     mask_data = mask_src.read(1, window=window).flatten()
+                    large_data = mask_src.read(window=window)
+                    window_transform = mask_src.window_transform(window)
+                    out_meta = mask_src.meta.copy()
+                    out_meta.update({
+                        'driver': 'GTiff',
+                        'height': window.height,
+                        'width': window.width,
+                        'transform': window_transform
+                    })
+                    with rasterio.open(os.path.join(output_tiff_path, file), 'w', **out_meta) as dst:
+                        dst.write(large_data)
 
                 unique, counts = np.unique(mask_data, return_counts=True)
 
