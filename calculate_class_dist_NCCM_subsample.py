@@ -4,8 +4,8 @@ from rasterio.windows import from_bounds
 import numpy as np
 
 # Define the directory where to start searching for raster files
-mask_file = '/data/yichiac/cdl_harmonized_block/2023_30m_cdls.tif'
-img_directory = '/data/yichiac/sentinel2_subsample_1000/sentinel2_cdl_2023_subsampled'
+mask_file = '/data/yichiac/nccm_harmonized_block/CDL2019_clip.tif'
+img_directory = '/data/yichiac/sentinel2_subsample_1000/sentinel2_nccm_2019_subsampled'
 aggregated_class_distribution = {}
 
 with rasterio.open(mask_file) as mask_src:
