@@ -1,4 +1,6 @@
-"""Usage: python3 visualize.py <path to images> <path to masks> <path to checkpoint>."""
+#!/usr/bin/env python3
+
+"""Usage: python3 visualize.py <image path> <mask path> <checkpoint path> <split>."""
 
 import os
 import sys
@@ -130,15 +132,7 @@ if __name__ == "__main__":
                 mask = sample["mask"][0]
                 prediction = sample["prediction"]
 
-                # Skip nodata pixels
-                if 0 in mask:
-                    continue
-
-                # Skip boring images
-                if len(mask.unique()) < 3:
-                    continue
-
                 # Plotting
-                image_dataset.plot(image, f"cdl_{i:02}_image.png")
-                mask_dataset.plot(mask, f"cdl_{i:02}_mask.png")
-                mask_dataset.plot(prediction, f"cdl_{i:02}_prediction.png")
+                image_dataset.plot(image, f"{sys.argv[4]}_{i:02}_image.png")
+                mask_dataset.plot(mask, f"{sys.argv[4]}_{i:02}_mask.png")
+                mask_dataset.plot(prediction, f"{sys.argv[4]}_{i:02}_prediction.png")
