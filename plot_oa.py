@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 
+plt.rcParams.update({'font.size': 14})
+
 # Data from the table
 datasets = ['CDL', 'NCCM', 'EuroCrops', 'AgriFieldNet', 'SAS', 'SACT']
 ood_plus_id = {
@@ -27,17 +29,14 @@ x_values_id_only = [10, 100, 900]
 colors = plt.cm.get_cmap('tab10', len(datasets))
 
 # Plotting the data
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(12, 8))
 
 for i, dataset in enumerate(datasets):
-    plt.plot(x_values_ood_plus_id, ood_plus_id[dataset], linestyle='-', marker='o', color=colors(i), label=f'{dataset} (OOD + ID)')
-    plt.plot(x_values_id_only, id_only[dataset], linestyle='--', marker='*', color=colors(i), label=f'{dataset} (ID Only)')
+    plt.plot(x_values_ood_plus_id, ood_plus_id[dataset], linestyle='-', marker='o', color=colors(i), linewidth=2.5, label=f'{dataset} (OOD + ID)')
+    plt.plot(x_values_id_only, id_only[dataset], linestyle='--', marker='*', color=colors(i), linewidth=2.5, label=f'{dataset} (ID Only)')
 
-# Set x-axis to log scale
-# plt.xscale('log')
 # Set the x-axis to show specific ticks
 plt.xticks(range(0, 1000, 100))
-
 
 # Adding labels and title
 plt.xlabel('Number of ID Samples')
@@ -45,10 +44,10 @@ plt.ylabel('Overall Accuracy (%)')
 plt.grid(True)
 
 # Adjust layout to make space for the legend
-plt.tight_layout(rect=[0, 0.05, 1, 1])
+plt.tight_layout(rect=[0, 0.15, 1, 1])
 
 # Move legend to the bottom of the plot
-plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05), ncol=3)
+plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.08), ncol=3, fontsize=12)
 
 
 # Show the plot
