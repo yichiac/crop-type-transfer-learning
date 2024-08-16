@@ -9,12 +9,12 @@ import time
 device = torch.device("cpu")
 
 # path = "/Users/yc/Downloads/log/checkpoints/epoch=9-step=96370.ckpt"
-path = "/Users/yc/Downloads/epoch=99-step=700.ckpt"
+path = "/Users/yc/Downloads/benchmark_new_test/mmnyvm68/checkpoints/epoch=99-step=700.ckpt"
 state_dict = torch.load(path, map_location=device)["state_dict"]
 state_dict = {key.replace("model.", ""): value for key, value in state_dict.items()}
 
 
-model = smp.Unet(encoder_name="resnet18", in_channels=13, classes=9)
+model = smp.Unet(encoder_name="resnet50", in_channels=13, classes=5)
 model.to(device)
 model.load_state_dict(state_dict, strict=True)
 
@@ -22,8 +22,8 @@ datamodule = Sentinel2CDLDataModule(
     crs="epsg:3857",
     batch_size=128,
     patch_size=256,
-    cdl_paths="/Users/yc/Datasets/cdl_everything",
-    sentinel2_paths="/Users/yc/Datasets/pub-956f3eb0f5974f37b9228e0a62f449bf.r2.dev/crop_type_mapping_sentinel2/cdl_2023_chipped",
+    cdl_paths="/Users/yc/Dowloads/cdl_harmonized_block",
+    sentinel2_paths="/Users/yc/Dowloads/sentinel2_subsample_100/sentinel2_cdl_2023_subsampled",
 )
 
 datamodule.setup("test")
