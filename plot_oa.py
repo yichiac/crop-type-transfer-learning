@@ -32,8 +32,8 @@ colors = plt.cm.get_cmap('tab10', len(datasets))
 plt.figure(figsize=(12, 8))
 
 for i, dataset in enumerate(datasets):
-    plt.plot(x_values_ood_plus_id, ood_plus_id[dataset], linestyle='-', marker='o', color=colors(i), linewidth=2.5, label=f'{dataset} (OOD + ID)')
-    plt.plot(x_values_id_only, id_only[dataset], linestyle='--', marker='*', color=colors(i), linewidth=2.5, label=f'{dataset} (ID Only)')
+    plt.plot(x_values_ood_plus_id, ood_plus_id[dataset], linestyle='-', marker='o', color=colors(i), linewidth=2.5, markersize=10, label=f'{dataset} (OOD + ID)')
+    plt.plot(x_values_id_only, id_only[dataset], linestyle='--', marker='*', color=colors(i), linewidth=2.5, markersize=10, label=f'{dataset} (ID Only)')
 
 # Set the x-axis to show specific ticks
 plt.xticks(range(0, 1000, 100))
@@ -49,6 +49,8 @@ plt.tight_layout(rect=[0, 0.15, 1, 1])
 # Move legend to the bottom of the plot
 plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.08), ncol=3, fontsize=12)
 
+# Save the plot
+plt.savefig('oa_curve.png', dpi=300)
 
 # Show the plot
 plt.show()
