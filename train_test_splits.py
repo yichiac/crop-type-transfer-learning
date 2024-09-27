@@ -19,7 +19,7 @@ dirs = ['sentinel2_agrifieldnet_2021_subsampled', 'sentinel2_eurocrops_subsample
 'sentinel2_cdl_2023_subsampled', 'sentinel2_nccm_2019_subsampled','sentinel2_sas_2021_subsampled']
 
 for dir in dirs:
-    directory_path = '/data/yichiac/sentinel2_subsample_100/' + dir
-    output_csv_path = '/home/yichiac/train-test-splits/' + dir + '_test.csv'
+    directory_path = '/data/yichiac/sentinel2_subsample_10/' + dir
+    output_csv_path = '/home/yichiac/train-test-splits/' + dir + '_10.csv'
     file_list = list_files_in_directory(directory_path)
     export_to_csv(file_list, output_csv_path)
