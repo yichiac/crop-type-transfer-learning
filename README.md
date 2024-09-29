@@ -4,7 +4,7 @@
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/crop-type-transfer-learning.git
+    git clone https://github.com/yichiac/crop-type-transfer-learning.git
     cd crop-type-transfer-learning/torchgeo
     ```
 
