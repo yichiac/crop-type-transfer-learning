@@ -3,8 +3,8 @@ import rasterio
 import numpy as np
 
 # Define the directory where to start searching for raster files
-img_directory = '/Users/yc/harmonized_global_crops/sentinel2_subsample_1000/sentinel2_sact_2017_subsampled'
-root_directory = '/Users/yc/harmonized_global_crops/sact_harmonized/train/labels'
+img_directory = '/Users/yc/harmonized_global_crops/sentinel2_subsample_1000/sentinel2_eurocrops_subsampled'
+root_directory = '/Users/yc/harmonized_global_crops/eurocrops_cropped_subsampled'
 aggregated_class_distribution = {}
 count_nodata = 0
 
@@ -13,7 +13,7 @@ c = 0
 for subdir, dirs, files in os.walk(img_directory):
     for file in files:
         if file.endswith('.tif'):
-            file_path = os.path.join(root_directory, file[5:])
+            file_path = os.path.join(root_directory, file)
             c += 1
 
             # Read the raster file
