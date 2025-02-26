@@ -23,12 +23,14 @@
 
 ### Download dataset
 The dataset is available on the [HuggingFace](https://huggingface.co/datasets/torchgeo/harmonized_global_crops).
-```sh
-git clone https://huggingface.co/datasets/torchgeo/harmonized_global_crops
+You can run the following Python script to download the dataset:
+```python
+from huggingface_hub import snapshot_download
+snapshot_download(repo_id="torchgeo/harmonized_global_crops", repo_type="dataset", local_dir="harmonized_global_crops")
 ```
 
 ### Data split
-Follow the files in `train-test-splits\` to split the data into training and testing sets.
+Follow the files in `train-test-splits/` to split the dataset into training and testing sets.
 
 ### Training
 Run the training script for CDL with SSL4EO-S12 pre-trained weights:
