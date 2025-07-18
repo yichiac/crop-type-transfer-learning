@@ -1,17 +1,24 @@
 # On the Generalizability of Foundation Models for Crop Type Mapping
 
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv)](https://arxiv.org/abs/2409.09451)
+[![Hugging Face](https://img.shields.io/badge/HuggingFace-TorchGeo-yellow?logo=huggingface&logoColor=yellow)](https://huggingface.co/torchgeo)
+[![GitHub](https://img.shields.io/badge/GitHub-TorchGeo-4CB05B?logo=github&logoColor=white)](https://github.com/microsoft/torchgeo)
+
+This is the official repository for the paper "_On the Generalizability of Foundation Models for Crop Type Mapping_".
+<!-- Transfer Learning for Global Crop Type Mapping with Foundation Models -->
+
 ## Installation
 
 1. Clone the repository:
     ```sh
     git clone https://github.com/yichiac/crop-type-transfer-learning.git
-    cd crop-type-transfer-learning/torchgeo
+    cd crop-type-transfer-learning
     ```
 
 2. Create a virtual environment and activate it:
     ```sh
-    conda create -n croptype python=3.10
-    conda activate croptype
+    python3 -m venv env
+    source env/bin/activate
     ```
 
 3. Install the required packages:
@@ -21,15 +28,23 @@
 
 ## Usage
 
-### Download dataset
+### Download Dataset
 The dataset is available on the [HuggingFace](https://huggingface.co/datasets/torchgeo/harmonized_global_crops).
+Login to download the crop type datasets.
+```sh
+huggingface-cli login
+```
 You can run the following Python script to download the dataset:
 ```python
 from huggingface_hub import snapshot_download
 snapshot_download(repo_id="torchgeo/harmonized_global_crops", repo_type="dataset", local_dir="harmonized_global_crops")
 ```
 
-### Data split
+### Sentinel-2 Download Pipeline
+Sentinel-2 donwload pipeline can be found in [Ai2 rslearn_projects](https://github.com/allenai/rslearn_projects/tree/master/one_off_projects/crop_type).
+
+
+### Data Split
 Follow the files in `train-test-splits/` to split the dataset into training and testing sets.
 
 ### Training
@@ -43,4 +58,18 @@ python3 -m torchgeo fit --config experiments/sentinel2_cdl_resnet50_ssl4eo_froze
 2. Run the testing script:
 ```sh
 python3 -m torchgeo test --config experiments/sentinel2_cdl_resnet50_ssl4eo_frozen.yaml --ckpt_path=...
+```
+
+### Reference
+If you find this code useful, please cite the following paper:
+```
+@misc{chang2025generalizabilityfoundationmodelscrop,
+      title={On the Generalizability of Foundation Models for Crop Type Mapping},
+      author={Yi-Chia Chang and Adam J. Stewart and Favyen Bastani and Piper Wolters and Shreya Kannan and George R. Huber and Jingtong Wang and Arindam Banerjee},
+      year={2025},
+      eprint={2409.09451},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2409.09451},
+}
 ```
