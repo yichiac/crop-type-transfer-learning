@@ -1,0 +1,43 @@
+trainer:
+  max_epochs: 100
+  accelerator: "gpu"
+  logger:
+    class_path: lightning.pytorch.loggers.WandbLogger
+    init_args:
+        project: "Few-shot"
+        name: "EuroCrops-100-OOD-ssl4eo-test"
+
+model:
+  class_path: SemanticSegmentationTask
+  init_args:
+    loss: "ce"
+    model: "unet"
+    backbone: "resnet50"
+    weights: ResNet50_Weights.SENTINEL2_ALL_MOCO
+    freeze_backbone: True
+    lr: 1e-3
+    patience: 1
+    in_channels: 13
+    num_classes: 6
+    num_filters: 1
+    ignore_index: 0
+
+data:
+  class_path: Sentinel2RasterizedEuroCropsDataModuleOOD
+  init_args:
+    batch_size: 128
+    patch_size: 256
+    num_workers: 16
+  dict_kwargs:
+    sentinel2_paths: "./sentinel2_subsample_eurocrops_ood_900"
+    sentinel2_cache: False
+    sentinel2_bands: ["B01","B02","B03","B04","B05","B06","B07","B08","B8A","B09","B10","B11","B12"]
+    cdl_paths : "./cdl_harmonized_block"
+    cdl_years: [2023]
+    eurocrops_paths: "./eurocrops_cropped_subsampled"
+    agrifieldnet_paths : "./agrifieldnet_harmonized"
+    nccm_paths : "./nccm_harmonized_block"
+    nccm_years: [2019]
+    sact_paths : "./sact_harmonized/train/labels"
+    sas_paths : "./sas_harmonized"
+    sas_years: [2021]

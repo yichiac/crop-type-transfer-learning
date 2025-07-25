@@ -1,0 +1,33 @@
+trainer:
+  max_epochs: 10
+  accelerator: "gpu"
+  logger:
+    class_path: lightning.pytorch.loggers.WandbLogger
+    init_args:
+        name: "EuroCrops-ResNet50-imagenet-decoder-lr1e-3"
+
+model:
+  class_path: SemanticSegmentationTask
+  init_args:
+    loss: "ce"
+    model: "unet"
+    backbone: "resnet50"
+    weights: True
+    freeze_backbone: True
+    lr: 1e-3
+    in_channels: 13
+    num_classes: 6
+    num_filters: 1
+    ignore_index: 0
+
+data:
+  class_path: Sentinel2EuroCropsDataModule
+  init_args:
+    batch_size: 128
+    patch_size: 256
+    num_workers: 32
+  dict_kwargs:
+    eurocrops_paths : "/data/favyenb/eurocrops/eurocrops_harmonized"
+    eurocrops_classes: ["0000000001", "0000000002", "0000000003", "0000000004", "0000000005"]
+    sentinel2_paths: "/data/favyenb/eurocrops/sentinel2"
+    sentinel2_cache: False

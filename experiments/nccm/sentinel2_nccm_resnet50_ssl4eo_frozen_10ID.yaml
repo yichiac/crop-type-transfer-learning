@@ -1,0 +1,36 @@
+trainer:
+  max_epochs: 100
+  accelerator: "gpu"
+  logger:
+    class_path: lightning.pytorch.loggers.WandbLogger
+    init_args:
+        project: "ID"
+        name: "NCCM-10ID-ssl4eo"
+
+model:
+  class_path: SemanticSegmentationTask
+  init_args:
+    loss: "ce"
+    model: "unet"
+    backbone: "resnet50"
+    weights: ResNet50_Weights.SENTINEL2_ALL_MOCO
+    freeze_backbone: True
+    lr: 1e-3
+    patience: 1
+    in_channels: 13
+    num_classes: 6
+    num_filters: 1
+    ignore_index: 0
+
+data:
+  class_path: Sentinel2NCCMDataModule
+  init_args:
+    batch_size: 128
+    patch_size: 256
+    num_workers: 16
+  dict_kwargs:
+    nccm_paths : "./harmonized_global_crops/nccm_harmonized_block"
+    nccm_years: [2019]
+    sentinel2_paths: "./harmonized_global_crops/sentinel2_subsample_test/sentinel2_nccm_2019_subsampled"
+    sentinel2_cache: False
+    sentinel2_bands: ["B01","B02","B03","B04","B05","B06","B07","B08","B8A","B09","B10","B11","B12"]

@@ -1,0 +1,34 @@
+trainer:
+  max_epochs: 100
+  accelerator: "gpu"
+  logger:
+    class_path: lightning.pytorch.loggers.WandbLogger
+    init_args:
+        project: "Benchmark-s"
+        name: "NCCM-ResNet50-satlas-frozen-lr1e-3"
+
+model:
+  class_path: SatlasSemanticSegmentationTask
+  init_args:
+    loss: "ce"
+    model_identifier: "Sentinel2_Resnet50_SI_MS"
+    freeze_backbone: False
+    lr: 1e-3
+    patience: 1
+    in_channels: 9
+    num_classes: 6
+    num_filters: 1
+    ignore_index: 0
+
+data:
+  class_path: Sentinel2NCCMSatlasDataModule
+  init_args:
+    batch_size: 128
+    patch_size: 256
+    num_workers: 16
+  dict_kwargs:
+    nccm_paths : "./nccm_harmonized_block"
+    nccm_years: [2019]
+    sentinel2_paths: "./sentinel2_subsample/sentinel2_nccm_2019_subsampled"
+    sentinel2_cache: False
+    sentinel2_bands: ["B04", "B03", "B02", "B05", "B06", "B07", "B08", "B11", "B12"]

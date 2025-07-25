@@ -1,0 +1,32 @@
+trainer:
+  max_epochs: 100
+  accelerator: "gpu"
+  logger:
+    class_path: lightning.pytorch.loggers.WandbLogger
+    init_args:
+        project: "Benchmark"
+        name: "SACT-ResNet50-ssl4eo-unfreeze-lr1e-3"
+
+model:
+  class_path: SemanticSegmentationTask
+  init_args:
+    loss: "ce"
+    model: "unet"
+    backbone: "resnet50"
+    weights: ResNet50_Weights.SENTINEL2_ALL_MOCO
+    freeze_backbone: True
+    lr: 1e-3
+    patience: 1
+    in_channels: 13
+    num_classes: 6
+    num_filters: 1
+    ignore_index: 0
+
+data:
+  class_path: SouthAfricaCropTypeDataModule
+  init_args:
+    batch_size: 128
+    patch_size: 256
+    num_workers: 56
+  dict_kwargs:
+    paths : "./sact_harmonized"
