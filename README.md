@@ -56,14 +56,13 @@ python3 train-test-splits/create_splits.py
 ### Training
 Run the training script for CDL with SSL4EO-S12 pre-trained weights:
 ```sh
-python3 -m torchgeo fit --config experiments/sentinel2_cdl_resnet50_ssl4eo_frozen.yaml
+python3 -m torchgeo fit --config experiments/fewshot/cdl_100_ood_ssl4eo.yaml --seed_everything 0
 ```
 
 ### Testing
-1. Change `cdl_paths` to the path to test files
-2. Run the testing script:
+After completing training, you can use the checkpoints to test on the data.
 ```sh
-python3 -m torchgeo test --config experiments/sentinel2_cdl_resnet50_ssl4eo_frozen.yaml --ckpt_path=...
+python3 -m torchgeo test --config experiments/fewshot/cdl_100_ood_ssl4eo.yaml --seed_everything 0 --data.sentinel2_paths ./harmonized_global_crops/sentinel2_subsample_test --ckpt_path=...
 ```
 
 ### Reference
