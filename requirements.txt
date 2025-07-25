@@ -1,1 +1,2 @@
 git+https://github.com/yichiac/torchgeo.git@crop_transfer_project
+satlaspretrain-models
