@@ -4,7 +4,7 @@
 [![Hugging Face](https://img.shields.io/badge/HuggingFace-TorchGeo-yellow?logo=huggingface&logoColor=yellow)](https://huggingface.co/torchgeo)
 [![GitHub](https://img.shields.io/badge/GitHub-TorchGeo-4CB05B?logo=github&logoColor=white)](https://github.com/microsoft/torchgeo)
 
-This is the official repository for the paper "_On the Generalizability of Foundation Models for Crop Type Mapping_", acctped at [IEEE IGARSS 2025](https://www.2025.ieeeigarss.org/).
+This is the official repository for the paper "_On the Generalizability of Foundation Models for Crop Type Mapping_", accepted at [IEEE IGARSS 2025](https://www.2025.ieeeigarss.org/).
 
 Authors: [Yi-Chia Chang](https://yichiac.github.io/), [Adam J. Stewart](https://github.com/adamjstewart), [Favyen Bastani](https://favyen.com/), [Piper Wolters](https://piperwolters.com/), Shreya Kannan, George R. Huber, Jingtong Wang, [Arindam Banerjee](https://arindam.cs.illinois.edu/index.html).
 
