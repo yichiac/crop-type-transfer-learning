@@ -70,15 +70,14 @@ data.dict_kwargs.sentinel2_paths='./harmonized_global_crops/sentinel2_subsample_
 ```
 
 ### Reference
-If you find this code useful, please cite the following paper:
+To cite our [IGARSS publication](https://ieeexplore.ieee.org/document/11242260), use the following citation:
 ```
-@misc{chang2025generalizabilityfoundationmodelscrop,
-      title={On the Generalizability of Foundation Models for Crop Type Mapping},
-      author={Yi-Chia Chang and Adam J. Stewart and Favyen Bastani and Piper Wolters and Shreya Kannan and George R. Huber and Jingtong Wang and Arindam Banerjee},
-      year={2025},
-      eprint={2409.09451},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2409.09451},
+@INPROCEEDINGS{chang2025croptypetransfer,
+    author={Chang, Yi-Chia and Stewart, Adam J. and Bastani, Favyen and Wolters, Piper and Kannan, Shreya and Huber, George R. and Wang, Jingtong and Banerjee, Arindam},
+    booktitle={IGARSS 2025 - 2025 IEEE International Geoscience and Remote Sensing Symposium},
+    title={On the Generalizability of Foundation Models for Crop Type Mapping},
+    year={2025},
+    pages={948-953},
+    doi={10.1109/IGARSS55030.2025.11242260}
 }
 ```
